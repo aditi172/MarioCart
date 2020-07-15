@@ -1,0 +1,64 @@
+body,html {
+  margin: 0;
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif; */
+  font-family:   'Balsamiq Sans', cursive;
+    
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: url(/img/mariocart1.jpg) no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  background-color: brown;
+  height: 100%;
+}
+form {
+  padding-top: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  margin-top: 60px;
+  /* border: 5px solid rgba(4, 156, 16, 0.973); */
+  box-shadow: 0 0 2px 5px rgba(7, 64, 187, 0.562);
+
+}
+.project-list {
+  padding-top: 25px;
+}
+.notifications {
+  padding-top: 25px;
+}
+.niche {
+  padding-bottom: 60px;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.btn {
+  box-shadow: none;
+}
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
+}
+.project-summary{
+  box-shadow: 0 0 2px 3px rgba(7, 64, 187, 0.562);
+}
+ 
