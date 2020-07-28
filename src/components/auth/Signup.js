@@ -1,7 +1,11 @@
 import React, { Component } from 'react'; 
 import { Auth } from 'aws-amplify';
+import {Redirect} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
+// import Signin from './Signin';
+// import authReducers from '../../store/reducers/authReducers';
 
-export default class Signup extends Component {
+class Signup extends Component {
 
     state={
         email:'',
@@ -10,7 +14,8 @@ export default class Signup extends Component {
         lastname:'',
         username:'',
         confirmationCode:'',
-        signedup: false
+        signedup: false,
+        confirm: false
     }
     handleChange=(e)=> {
         this.setState({
@@ -19,8 +24,8 @@ export default class Signup extends Component {
     }
     handleSubmit=(e)=> {
         e.preventDefault();
-        //console.log(this.state);  
-        const {signedup, email, password, firstname, lastname,username, confirmationCode}=this.state;
+        
+        const {confirm, signedup, email, password, firstname, lastname,username, confirmationCode}=this.state;
         if(!signedup) {
             Auth.signUp({
                 firstname: firstname,
@@ -39,16 +44,21 @@ export default class Signup extends Component {
         }
         else {
             Auth.confirmSignUp(email, confirmationCode)
-            .then(()=>this.props.history.push("/signin"))
-            .catch((er)=> console.log(er));
-
+                .then(()=>
+                    this.setState({
+                        confirm: true
+                    }),
+                    console.log("confirm=true")
+                ).catch((er)=> console.log(er));
         }
+        
         // document.getElementById("form").reset();         
     }
     render() {
-        console.log(this.props);
-        const {signedup}=this.state;
+        const {signedup, confirm, firstname, lastname}=this.state;
+        
         if(signedup) {
+            if(!confirm) {
             return(
             <div className="container section">
                 <div className="formholder section">
@@ -68,12 +78,25 @@ export default class Signup extends Component {
                         <div className="input-field">
                             <button className="btn blue darken-3 z-depth-0">Confirm</button>
                         </div>
-                        
                     </form>
                 </div>
             </div>
             )
-        } else {
+        }
+        else {
+            return(
+            <Redirect to={{
+                pathname: '/signin',
+                newprops: {
+                    firstname: firstname,
+                    lastname: lastname
+                }
+            }}></Redirect>
+            // <h3>Yei hoyega bas</h3>
+            )
+          }
+        }
+        else {
         return (
             <div className="container section">
                 <div className="formholder section">
@@ -94,11 +117,6 @@ export default class Signup extends Component {
                                 <input className="validate" id="email" type="email" onChange={this.handleChange}></input>
                             </div>
 
-                            {/* <div className="input-field">
-                                <label htmlFor="username">Username</label>
-                                <input id="username" type="text" onChange={this.handleChange}></input>
-                            </div> */}
-
                             <div className="input-field">
                                 <label htmlFor="password">Password</label>
                                 <input className="validate" id="password" type="password" onChange={this.handleChange}></input>
@@ -115,3 +133,5 @@ export default class Signup extends Component {
         }
     }
 }
+
+export default Signup;

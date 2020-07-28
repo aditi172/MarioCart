@@ -1,22 +1,46 @@
 import React, { Component } from 'react';
 import {createProject} from '../../store/actions/projectActions';
 import { connect } from 'react-redux';
-import projectReducer from '../../store/reducers/projectReducers';
+// import projectReducer from '../../store/reducers/projectReducers';
 
 class CreateProject extends Component {
+   
     state={
         title:'',
         content:'',
-        file:''
+        fileUrl: null,
+        file: null,
+        filename: null,
+        user:'',
+        timestamp:''
     }
     handleChange=(e)=> {
         this.setState({
             [e.target.id]: e.target.value
         })
     }
-    
+    uploadfile=(e)=> {
+        const file=e.target.files[0];
+        this.setState({
+            fileUrl: URL.createObjectURL(file),
+            file,
+            filename: file.name
+        })
+        document.querySelector("#file").onchange =()=>{
+        document.querySelector("#file-name").textContent = this.files[0].name;
+        }
+    }
     handleSubmit=(e)=> {
         e.preventDefault();
+        console.log(this.props)
+        let d=new Date();
+        let year=d.getFullYear();
+        let month=d.getMonth();
+        let date=d.getDate();
+        let sub=date+"."+month+"."+year;
+        this.state.timestamp=sub;
+        this.state.user=this.props.auth.user.username;
+        console.log(this.props);
         this.props.createProject(this.state);
         document.getElementById("form").reset();         
     }
@@ -37,7 +61,8 @@ class CreateProject extends Component {
                             </div>
 
                             <div className="btn btn-file input-field pink lighten-1 z-depth-0">
-                                 Add File?<input type="file" id="file" onChange={this.handleChange}></input>
+                                 Add File?<input type="file" id="file" onChange={this.uploadfile}></input>
+                                 <label id="file-name"></label>
                             </div>
 
                             <div className="input-field">

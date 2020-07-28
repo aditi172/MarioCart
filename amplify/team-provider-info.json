@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-mariocart-dev-54945-authRole",
+            "UnauthRoleArn": "arn:aws:iam::847429644381:role/amplify-mariocart-dev-54945-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::847429644381:role/amplify-mariocart-dev-54945-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-mariocart-dev-54945-deployment",
+            "UnauthRoleName": "amplify-mariocart-dev-54945-unauthRole",
+            "StackName": "amplify-mariocart-dev-54945",
+            "StackId": "arn:aws:cloudformation:us-east-1:847429644381:stack/amplify-mariocart-dev-54945/03d51e70-c375-11ea-aefc-0a35f6ddac11",
+            "AmplifyAppId": "d13d76xlahq3jl"
+        },
+        "categories": {
+            "auth": {
+                "mariocartff0bae8a": {}
+            }
+        }
+    }
+}

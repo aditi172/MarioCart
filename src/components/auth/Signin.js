@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Auth } from 'aws-amplify';
 import {Link} from 'react-router-dom';
+import {createUser} from '../../store/actions/userActions';
+import { connect } from 'react-redux';
 
 
-export default class Signin extends Component {
+class Signin extends Component {
     state={
         email:'',
         password:''
@@ -20,6 +22,10 @@ export default class Signin extends Component {
         .then((user)=>{ console.log(user)
             this.props.auth.setAuthStatus(true)
             this.props.auth.setUser(user)
+            console.log(this.props)
+            if(this.props.location.newprops) {
+                this.props.createUser(this.props.location.newprops)
+            }
             this.props.history.push("/")})
         .catch((er)=> console.log(er))
         // console.log(this.state);  
@@ -53,3 +59,9 @@ export default class Signin extends Component {
         )
     }
 }
+const mapDispatchToProps=(dispatch)=> {
+    return({
+        createUser: (user)=>dispatch(createUser(user))
+    })
+}
+export default connect(null, mapDispatchToProps)(Signin)

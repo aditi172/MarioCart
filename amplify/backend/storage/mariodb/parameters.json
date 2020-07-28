@@ -1,0 +1,5 @@
+{
+    "tableName": "mariodb",
+    "partitionKeyName": "userId",
+    "partitionKeyType": "S"
+}

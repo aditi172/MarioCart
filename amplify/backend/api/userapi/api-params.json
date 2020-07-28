@@ -1,0 +1,42 @@
+{
+    "paths": [
+        {
+            "name": "/users",
+            "lambdaFunction": "usersfunction",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            }
+        }
+    ],
+    "resourceName": "userapi",
+    "apiName": "userapi",
+    "functionArns": [
+        {
+            "lambdaFunction": "usersfunction"
+        }
+    ],
+    "privacy": {
+        "auth": 1,
+        "unauth": 0,
+        "authRoleName": "amplify-mariocart-dev-54945-authRole",
+        "unAuthRoleName": "amplify-mariocart-dev-54945-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "usersfunction",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ],
+    "uuid": "4a7c7aab"
+}
